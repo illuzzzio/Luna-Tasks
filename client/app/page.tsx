@@ -8,7 +8,7 @@ import { TaskManager } from '@/components/TaskManager';
 import { AnalyticsView } from '@/components/AnalyticsView';
 import { Sparkles, ShieldCheck, Database, Lock } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000').replace(/\/+$/, '');
 
 export default function Home() {
   const { isSignedIn, user, isLoaded } = useUser();
