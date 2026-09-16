@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "packageManager": "npm@10.8.2",
+  "overrides": {
+    "next": "$next"
+  },
   "dependencies": {
     "@clerk/nextjs": "^6.9.6",
     "@tailwindcss/postcss": "^4.0.0",
