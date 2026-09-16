@@ -113,10 +113,10 @@ export default function Home() {
     );
   }
 
-  if (!isSignedIn) {
+  // Fallback if Clerk takes too long or isn't fully initialized on Vercel
+  if (!isSignedIn && isLoaded) {
     return (
       <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 relative overflow-hidden">
-        {/* Ambient 3D glow circles */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-neutral-800/20 via-neutral-600/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
         <div className="relative z-10 max-w-md w-full text-center space-y-6">
@@ -127,7 +127,7 @@ export default function Home() {
           
           <div>
             <h1 className="text-4xl font-black tracking-tight mb-3">
-              LUNA<span className="text-neutral-400 font-light">TASKS</span>
+              LUNA<span className="text-neutral-450 font-light">TASKS</span>
             </h1>
             <p className="text-neutral-400 text-sm leading-relaxed">
               Professional 3D academic command center. Manage tasks, exams, research papers, and deadlines with Clerk authentication & Neon database storage.
@@ -137,10 +137,6 @@ export default function Home() {
           <div className="bg-neutral-950 p-6 rounded-3xl border border-neutral-800 shadow-[0_20px_50px_rgba(0,0,0,0.9)] flex flex-col items-center">
             <div className="mb-4">
               <SignIn routing="hash" />
-            </div>
-            <div className="flex items-center gap-4 pt-4 border-t border-neutral-900 text-xs text-neutral-500">
-              <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5 text-emerald-400" /> Clerk Auth</span>
-              <span className="flex items-center gap-1"><Database className="w-3.5 h-3.5 text-neutral-400" /> Neon DB</span>
             </div>
           </div>
         </div>
