@@ -44,10 +44,9 @@ export default function Home() {
   };
 
   // Force bypass loading lock on Vercel if isLoaded is delayed
+  const [forceLoad, setForceLoad] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      // If still stuck after 2 seconds, force hydration check
-    }, 2000);
+    const timer = setTimeout(() => setForceLoad(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
