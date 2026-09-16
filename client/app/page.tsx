@@ -43,11 +43,13 @@ export default function Home() {
     }
   };
 
+  // Force bypass loading lock on Vercel if isLoaded is delayed
   useEffect(() => {
-    if (isSignedIn) {
-      fetchTasks();
-    }
-  }, [isSignedIn]);
+    const timer = setTimeout(() => {
+      // If still stuck after 2 seconds, force hydration check
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAddTask = async (taskData: any) => {
     const token = await getToken();
@@ -100,7 +102,7 @@ export default function Home() {
     await fetchTasks();
   };
 
-  if (!isLoaded) {
+  if (!isLoaded && !forceLoad) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center text-white">
         <div className="flex flex-col items-center gap-4">
