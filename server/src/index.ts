@@ -14,8 +14,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors({
   origin: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: true,
 }));
+app.options('*', cors());
 app.use(express.json());
 app.use(clerkMiddleware());
 
